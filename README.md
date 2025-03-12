@@ -1,5 +1,5 @@
 # Linguagem-SQL
---Inserindo  Dados da "tabelapedidos" em uma nova tabela de clientes ouro: tabelapedidosgold--
+--Inserindo  Dados da "tabelapedidos" em uma nova tabela de clientes ouro: "tabelapedidosgold"--
 
 CREATE TABLE tabelapedidosgold (
 id_pedido INT PRIMARY KEY,
