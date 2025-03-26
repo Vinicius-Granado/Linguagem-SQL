@@ -1,0 +1,18 @@
+#Query SQL#
+
+SELECT Mes,Ano,Nome_Cliente,Nome_Produto, 
+  --Arredondando os números para 2 casas decimais e apelidando as colunas--
+     ROUND(SUM(Valor_Venda),2) AS Total_Venda,
+     ROUND(AVG(Valor_Venda),2) AS Média_Venda,
+     ROUND(SUM(Custo_Envio),2) AS Custo_Envio,
+     COUNT(Valor_Venda) AS Contagem, 
+  -- Criando relacionamento entre tabelas,para consulta de dados em tabelas distintas por meio de ID's--  
+     Categoria,Modo_Envio,Pais,Segmento,Valor_Venda
+FROM TB_DSA_VENDAS, TB_DSA_PRODUTOS,TB_DSA_PEDIDOS,TB_DSA_CLIENTES
+WHERE TB_DSA_VENDAS.Produto = TB_DSA_PRODUTOS.ID_Produto
+AND TB_DSA_VENDAS.Pedido = TB_DSA_PEDIDOS.ID_Pedido
+AND TB_DSA_VENDAS.Cliente = TB_DSA_CLIENTES.ID_Cliente 
+  --Agrupando pelo nome do produto--
+GROUP BY Nome_Produto 
+  --Ordem decrescente por quantidade vendida
+ORDER BY Contagem DESC;
